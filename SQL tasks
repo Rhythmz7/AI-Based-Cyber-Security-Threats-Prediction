@@ -1,0 +1,110 @@
+SQL Essentials 💾
+
+These queries cover the building blocks of SQL, from basic selection to more advanced window functions. We'll assume we have two tables: `employees` (with columns like `employee_id`, `name`, `salary`, `department_id`) and `departments` (with columns like `id`, `department_name`, `location`).
+
+1. Selecting and Filtering Data
+
+The most fundamental SQL query: getting specific data that meets certain criteria using `SELECT`, `FROM`, and `WHERE`.
+
+ Select the name and salary of employees in the 'Sales' department
+SELECT
+    name,
+    salary
+FROM
+    employees
+WHERE
+    department_id = 1; -- Assuming the 'Sales' department has an ID of 1
+
+
+Sorting an2. d Limiting Results
+
+Controlling the presentation of your results using `ORDER BY` and `LIMIT`.
+
+Find the top 5 highest-paid employees
+SELECT
+    name,
+    salary
+FROM
+    employees
+ORDER BY
+    salary DESC -- 'DESC' sorts from highest to lowest
+LIMIT 5;
+
+3. Aggregating Data (`GROUP BY`)
+
+Used to summarize data by grouping rows that have the same values into summary rows.
+
+Calculate the number of employees and the average salary per department
+SELECT
+    department_id,
+    COUNT(employee_id) AS number_of_employees,
+    AVG(salary) AS average_salary
+FROM
+    employees
+GROUP BY
+    department_id;
+
+4.Joining Tables
+
+`JOIN` is used to combine rows from two or more tables based on a related column between them.
+
+Get the name of each employee along with their department's name
+SELECT
+    e.name,
+    d.department_name
+FROM
+    employees AS e
+INNER JOIN
+    departments AS d ON e.department_id = d.id; -- Join on the common department ID
+
+
+5. Filtering Aggregated Data (`HAVING`)
+
+`WHERE` filters rows *before* they are grouped, while `HAVING` filters groups *after* they have been created by the `GROUP BY` clause.
+
+```sql
+-- Find departments that have more than 10 employees
+SELECT
+    department_id,
+    COUNT(employee_id) as employee_count
+FROM
+    employees
+GROUP BY
+    department_id
+HAVING
+    COUNT(employee_id) > 10; -- Filter the groups based on the aggregated count
+
+6. Using a Common Table Expression (CTE)
+
+CTEs (defined with a `WITH` clause) make complex queries more readable by breaking them into logical, temporary result sets.
+
+Find employees who earn more than the average salary of their department
+WITH DepartmentAvgSalary AS (
+    -- First, define the CTE to calculate the average salary for each department
+    SELECT department_id, AVG(salary) as avg_dept_salary
+    FROM employees
+    GROUP BY department_id
+)
+ Then, join the CTE back to the employees table to find the desired employees
+SELECT
+    e.name,
+    e.salary
+FROM
+    employees e
+JOIN
+    DepartmentAvgSalary d ON e.department_id = d.department_id
+WHERE
+    e.salary > d.avg_dept_salary;
+
+7.Using Window Functions
+
+Window functions perform calculations across a set of table rows that are related to the current row. This is a very common interview topic.
+
+Rank employees within each department based on their salary
+SELECT
+    name,
+    department_id,
+    salary,
+    RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) as salary_rank
+FROM
+    employees;

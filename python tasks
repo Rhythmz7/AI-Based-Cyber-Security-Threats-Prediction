@@ -1,0 +1,89 @@
+Essential Python Tasks 🐍
+
+1. List Comprehension
+
+This is a concise and highly readable way to create lists. It's often faster than using a standard `for` loop.
+
+# Create a list of squares for even numbers from 0 to 9
+numbers = range(10)
+squares_of_evens = [n**2 for n in numbers if n % 2 == 0]
+print(squares_of_evens)
+ Output: [0, 4, 16, 36, 64]
+
+2 Dictionary Manipulation
+
+Dictionaries are fundamental in Python. Knowing how to efficiently access and iterate over them is crucial.
+
+ Define a sample dictionary
+user_data = {"name": "Alex", "id": 101, "city": "New York"}
+
+ Iterate over keys and values efficiently using .items()
+for key, value in user_data.items():
+    print(f"{key}: {value}")
+
+ Safely get a value to avoid an error if the key doesn't exist
+country = user_data.get("country", "Not specified") # Returns 'Not specified' if 'country' key is not found
+print(f"Country: {country}")
+
+3. Flexible Functions with `args` and `kwargs`
+
+This syntax allows you to create powerful functions that can accept a **variable number of arguments**.
+
+
+ A function that accepts any number of positional and keyword arguments
+def flexible_function(args, kwargs):
+     args becomes a tuple of all positional arguments
+    print("Positional args:", args)
+    kwargs becomes a dictionary of all keyword arguments
+    print("Keyword args:", kwargs)
+
+flexible_function(1, "hello", status="active", user_id=123)
+
+4. Basic Class (Object-Oriented Programming)
+
+Understanding Object-Oriented Programming (OOP) is essential. This shows how to define a simple class with a constructor and a method.
+
+ Define a simple class to represent a Dog
+class Dog:
+    # The constructor method initializes a new Dog object's attributes
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    # A method defines the object's behavior
+    def bark(self):
+        return f"{self.name} says woof!"
+
+# Create an instance (an object) of the Dog class
+my_dog = Dog("Buddy", "Golden Retriever")
+print(my_dog.bark())
+
+5. Reading a File Safely
+
+Using the `with` statement is the standard, safe way to handle files, as it ensures they are closed automatically, even if errors occur.
+
+# Read the contents of a file line by line
+try:
+    with open("example.txt", "r") as file: # 'r' is for read mode
+        for line in file:
+             .strip() removes leading/trailing whitespace and newlines
+            print(line.strip())
+except FileNotFoundError:
+    print("Error: The file was not found.")
+
+
+6. Pandas DataFrame Filtering
+
+For any data-related role, `pandas` is a must-know library. This shows the standard way to filter data in a DataFrame.
+
+
+import pandas as pd
+
+ Create a sample DataFrame
+data = {'Product': ['A', 'B', 'A', 'C', 'B'], 'Sales': [100, 150, 120, 80, 200]}
+df = pd.DataFrame(data)
+
+Filter the DataFrame to show only rows for Product 'B' where Sales > 150
+high_sales_b = df[(df['Product'] == 'B') & (df['Sales'] > 150)]
+print(high_sales_b)
+```

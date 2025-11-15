@@ -1,0 +1,109 @@
+Model Research Report
+
+Project Title: AI-Driven Cybersecurity Threat Prediction Platform
+
+1. Objective
+
+The primary objective of this research is to identify and analyze suitable machine learning and deep learning models that can accurately detect, classify, and predict cybersecurity threats. The models selected must handle complex, high-dimensional network data efficiently while maintaining interpretability and scalability for real-time threat prediction.
+
+2. Overview
+
+Cybersecurity data often involves large-scale, imbalanced, and heterogeneous network traffic logs. The goal is to select models capable of learning both known attack patterns and anomalous behaviors representing potential new threats.
+
+For this project, both traditional machine learning algorithms and deep learning architectures are explored to determine the optimal set of models for implementation.
+
+3. Models Considered
+
+A. Classical Machine Learning Models
+
+Model	Description	Advantages	Limitations
+
+Logistic Regression	A linear model used for binary classification problems such as predicting whether a network connection is benign or malicious.	Simple, interpretable, fast to train.	Struggles with nonlinear relationships.
+
+Random Forest	Ensemble model using multiple decision trees to improve classification accuracy.	Robust to overfitting, handles noisy and imbalanced data.	Slower for large datasets, less interpretable.
+
+XGBoost	Gradient boosting algorithm that builds decision trees sequentially for higher accuracy.	High predictive performance, efficient and scalable.	Requires parameter tuning for optimal performance.
+
+Support Vector Machine (SVM)	Finds optimal hyperplane to separate classes.	Effective in high-dimensional spaces.	Computationally expensive on large datasets.
+
+Naïve Bayes	Probabilistic model based on Bayes’ theorem.	Simple and effective for text-based threat detection (e.g., phishing, spam).	Assumes feature independence, which may not hold true.
+
+
+B. Deep Learning Models
+
+Model	Description	Advantages	Limitations
+
+LSTM (Long Short-Term Memory)	A type of Recurrent Neural Network that captures temporal dependencies in sequential data such as network logs or packet flows.	Excellent for sequential threat pattern detection.	Requires significant data and training time.
+
+CNN (Convolutional Neural Network)	Learns local feature patterns; useful for recognizing patterns in structured data or visualized traffic data.	Detects spatial correlations in traffic behavior.	Needs proper preprocessing and reshaping of input data.
+Autoencoder	Unsupervised neural network for learning data representations; useful for anomaly detection.	Detects unknown or rare threats by learning normal behavior.	May require tuning to avoid false positives.
+
+Deep Neural Network (DNN)	Fully connected neural network for general threat classification tasks.	High learning capacity for complex patterns.	Prone to overfitting without regularization.
+
+
+C. Hybrid / Ensemble Models
+
+To enhance performance, hybrid and ensemble models are considered, such as:
+
+Stacked Ensemble: Combines Random Forest and XGBoost for higher accuracy.
+
+Autoencoder + Classifier: Autoencoder detects anomalies → classifier labels them.
+
+CNN + LSTM Model: Captures both spatial and temporal features in network data.
+
+These approaches combine the strengths of multiple algorithms for improved detection precision and generalization.
+
+4. Model Selection Strategy
+
+The project adopts a progressive evaluation approach:
+
+1. Baseline Evaluation: Logistic Regression and Random Forest for quick benchmarking.
+
+2. Performance Enhancement: XGBoost for improved accuracy and efficiency.
+
+3. Advanced Deep Learning Phase: LSTM and Autoencoder for sequential and anomaly detection.
+
+4. Final Ensemble Model: Combine best-performing classical and deep models for robust threat prediction.
+
+5. Dataset Compatibility
+
+The following datasets are suitable for the models above:
+
+NSL-KDD Dataset – Standard for network intrusion detection.
+
+CICIDS2017 / CSE-CIC-IDS2018 – Modern and realistic intrusion datasets.
+
+UNSW-NB15 – Contains a wide variety of attack categories (DoS, Exploits, Reconnaissance, etc.).
+
+PhishTank / UCI Phishing Dataset – Ideal for phishing URL detection.
+
+Each dataset will undergo preprocessing (cleaning, encoding, normalization) before being fed into the selected models.
+
+6. Evaluation Metrics
+
+To assess model performance, the following metrics will be used:
+
+Accuracy – Overall correctness of predictions.
+
+Precision – Fraction of correctly identified threats among predicted threats.
+
+Recall (Sensitivity) – Ability to detect all actual threats.
+
+F1 Score – Balance between precision and recall.
+
+ROC-AUC Score – Evaluates model performance across classification thresholds.
+
+
+7. Conclusion
+
+Based on this research, the models chosen for implementation in the AI-Driven Cybersecurity Threat Prediction Platform are:
+
+1. Random Forest – Reliable and interpretable baseline.
+
+2. XGBoost – High accuracy and scalability for real-time classification.
+
+3. LSTM / Autoencoder – Deep learning models for sequential and anomaly detection.
+
+4. Hybrid Ensemble – Final model integrating multiple algorithms for superior threat prediction performance.
+
+These models collectively enable the system to learn from past cyber-attack data, detect ongoing threats, and predict future malicious activities with high accuracy.
