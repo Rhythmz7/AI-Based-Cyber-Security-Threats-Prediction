@@ -1,0 +1,24 @@
+# Core Streamlit & Data
+streamlit
+pandas
+numpy
+plotly
+requests
+pyarrow
+psutil
+
+# Machine Learning
+scikit-learn
+joblib
+
+# Database
+sqlalchemy
+psycopg2-binary
+
+# Google AI
+google-generativeai
+pydantic
+typing-extensions
+
+# GeoIP
+geoip2
